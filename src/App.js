@@ -12,9 +12,10 @@ import {
 } from "@solana/web3.js";
 
 import "./App.css";
+import WalletStatus from "./components/WalletStatus";
 
 function App() {
-  const [_, setWalletExists] = React.useState(false);
+  const [walletExists, setWalletExists] = React.useState(false);
   const [walletAddress, setWalletAddress] = React.useState(null);
   const [walletBalance, setWalletBalance] = React.useState(0);
 
@@ -51,6 +52,12 @@ function App() {
   };
 
   const connectWallet = async () => {
+    if (!walletExists) {
+      window.open(
+        "https://chrome.google.com/webstore/detail/phantom/bfnaelmomeimhlpmgjnjophhpkkoljpa?hl=en",
+        "_blank"
+      );
+    }
     const { solana } = window;
 
     if (solana) {
@@ -143,10 +150,7 @@ function App() {
             <HiDesktopComputer size="24px" color="red" />
             <p>System Wallet: Not found</p>
           </div>
-          <div className="phantom-status-container">
-            <HiOutlineStatusOnline size="24px" color="green" />
-            <p>Phantom wallet detected</p>
-          </div>
+          <WalletStatus walletExists={walletExists} />
         </nav>
         <div className="body">
           <button
@@ -176,14 +180,13 @@ function App() {
             </p>
             |<p>{systemSolanaAccountBal / LAMPORTS_PER_SOL} SOL</p>
           </div>
-          <div className="phantom-status-container">
-            <HiOutlineStatusOnline size="24px" color="green" />
-            <p>Phantom wallet detected</p>
-          </div>
+          <WalletStatus walletExists={walletExists} />
         </nav>
         <div className="body">
           <button onClick={connectWallet} className="create-account-btn">
-            Connect your Phantom wallet
+            {walletExists
+              ? "Connect your Phantom wallet"
+              : "Install Phantom wallet"}
           </button>
         </div>
       </div>
