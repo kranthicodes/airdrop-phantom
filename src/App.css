@@ -1,38 +1,97 @@
-.App {
-  text-align: center;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html,
+body {
+  height: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Josefin Sans", sans-serif;
 }
 
-.App-header {
-  background-color: #282c34;
+#root,
+#__next {
+  isolation: isolate;
+}
+
+.container {
+  display: flex;
   min-height: 100vh;
+  min-width: 100vw;
+  flex-direction: column;
+  gap: 24px;
+  background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+}
+
+nav {
+  padding: 12px 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.body {
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex: 1;
 }
 
-.App-link {
-  color: #61dafb;
+button {
+  background-color: #886ac9;
+  border: none;
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-family: inherit;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+
+.body button.create-account-btn {
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  line-height: 24px;
+  cursor: pointer;
+  transition: transform 0.5s ease-out;
+  text-align: center;
+}
+
+.body button.create-account-btn:disabled {
+  background-color: #796a9b;
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.body button.create-account-btn:hover {
+  transform: scale(1.1);
+  transition: transform 0.5s ease-in;
+}
+.body button.create-account-btn:disabled:hover{
+  transform: none;
+  transition: none;
+}
+
+.phantom-status-container {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.phantom-status-container p {
 }
